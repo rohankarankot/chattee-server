@@ -32,9 +32,7 @@ const checkUsernameAvailability = async (req, res) => {
 
 const signInWithGoogle = async (req, res) => {
   const { last_name, id_token, first_name, profile_picture, username } =
-  console.log('##########>>>>>> ', last_name, id_token, first_name, profile_picture, username);
     req.body;
-  console.log("req.body: ", req.body);
 
   if (!id_token) {
     throw new BadRequestError("ID token is required");
@@ -46,7 +44,6 @@ const signInWithGoogle = async (req, res) => {
       audience: process.env.GOOGLE_CLIENT_ID,
     });
     const payload = ticket.getPayload();
-    console.log("payload: ", payload);
 
     const verifiedEmail = payload.email;
 
